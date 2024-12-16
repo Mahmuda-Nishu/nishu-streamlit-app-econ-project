@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the dataset
-df = pd.read_csv("C:/Users/mnishu/Downloads/bls_data_1.csv")
+df = pd.read_csv("bls_data_1.csv")
 
 # Dashboard Title
 st.title("📊 US Labor Statistics Dashboard")
