@@ -69,7 +69,7 @@ def process_bls_data(json_data):
     df = df[['series_id', 'year_month', 'value', 'year', 'period', 'period_name']]
 
     # Save to CSV
-    df.to_csv("bls_data_combined.csv", index=False)
+    df.to_csv("bls_data_project.csv", index=False)
     print("Data processed and saved as 'bls_data_combined.csv'")
     return df
 
