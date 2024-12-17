@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the dataset
-df = pd.read_csv("bls_data_1.csv")
+df = pd.read_csv("C:/Users/mnishu/Downloads/bls_data_project.csv")
 
 # Dashboard Title
 st.title("📊 US Labor Statistics Dashboard")
@@ -16,7 +16,10 @@ Select a series below to view trends over time. Use the tools to explore and ana
 # Dropdown to select a series
 series_dict = {
     "CES0000000001": "Total Non-Farm Workers",
-    "LNS14000000": "Unemployment Rate"
+    "LNS14000000": "Unemployment Rate",
+    "CES0500000003": "Average Weekly Hours of Production Employees",
+    "CES3000000001": "Manufacturing Employment",
+    "LNS14100000": "Employment-Population Ratio"
 }
 df['series_name'] = df['series_id'].map(series_dict)
 selected_series_name = st.selectbox(
@@ -28,12 +31,12 @@ selected_series_name = st.selectbox(
 filtered_df = df[df['series_name'] == selected_series_name]
 
 # Define dynamic labels and colors
-if selected_series_name == "Total Non-Farm Workers":
-    y_label = "Value (in thousands)"
-    line_color = "#1f77b4"  # Blue
-else:
+if "Rate" in selected_series_name or "Ratio" in selected_series_name:
     y_label = "Value (%)"
     line_color = "#2ca02c"  # Green
+else:
+    y_label = "Value (in thousands)"
+    line_color = "#1f77b4"  # Blue
 
 # Plot the data
 st.subheader(f"📈 Trends for **{selected_series_name}**")
@@ -76,9 +79,12 @@ st.sidebar.title("ℹ️ About This Dashboard")
 st.sidebar.markdown("""
 - **Source**: [US Bureau of Labor Statistics](https://www.bls.gov)
 - **Metrics Included**:
-    - Total Non-Farm Workers (in thousands)
-    - Unemployment Rate (%)
-- **Data Range**: 2022-01 to 2023-12
+    - Total Non-Farm Workers
+    - Unemployment Rate
+    - Average Weekly Hours of Production Employees
+    - Manufacturing Employment
+    - Employment-Population Ratio
+- **Data Range**: Starting from 2022
 - This dashboard is interactive: select a series and view trends or download the raw data.
 """)
 
