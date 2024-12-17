@@ -18,3 +18,17 @@ This is an interactive Streamlit dashboard for visualizing labor statistics data
 - Clone the repository.
 - Install the dependencies: `pip install -r requirements.txt`.
 - Run the app: `streamlit run app.py`.
+
+## **Deployment**
+Access the live dashboard here: [Live Dashboard](https://streamlit-link.streamlit.app)
+
+---
+
+## **Acknowledgments**
+- **BLS API** for data.
+- Guidance from Econ 8320 course.
+
+---
+
+## **License**
+This project is licensed under the MIT License, allowing anyone to use, modify, and distribute the software with proper attribution. See the LICENSE file for details.
