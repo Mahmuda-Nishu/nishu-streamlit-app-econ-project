@@ -2,9 +2,9 @@
 This is an interactive Streamlit dashboard for visualizing labor statistics data from the US Bureau of Labor Statistics (BLS).
 
 ## Features
-- View trends in Total Non-Farm Workers and Unemployment Rate (2022–2023).
-- Download filtered data as a CSV file.
-- Interactive visualization with dynamic options.
+- View trends in Total Non-Farm Workers, Unemployment Rate, Manufacturing Employment, and more (2022–2023).
+- Download customizable filtered data as a CSV file.
+- Interactive visualization with advanced dynamic options.
 
 ## Technologies Used
 - **Streamlit**: For building the dashboard.
