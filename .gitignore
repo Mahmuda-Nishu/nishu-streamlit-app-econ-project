@@ -1,0 +1,32 @@
+# Byte-compiled files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.env/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# API keys or environment files
+.env
+
+# Raw data or large files
+*.csv
+raw_bls_response.json
+
+# Streamlit temporary files
+.streamlit/
