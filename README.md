@@ -20,7 +20,7 @@ This is an interactive Streamlit dashboard for visualizing labor statistics data
 - Run the app: `streamlit run app.py`.
 
 ## **Deployment**
-Access the live dashboard here: [Live Dashboard](https://streamlit-link.streamlit.app)
+Access the live dashboard here: [Live Dashboard](https://mahmuda-nishu-nishu-streamlit-app-econ-project-app-twsbcq.streamlit.app/)
 
 ---
 
