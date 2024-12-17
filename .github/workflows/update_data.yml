@@ -17,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10' # Specify the Python version compatible with your project
+        python-version: '3.10' 
 
     - name: Install Dependencies
       run: |
@@ -26,7 +26,7 @@ jobs:
 
     - name: Run Data Update Script
       run: |
-        python bls_econ_project.py # Ensure this is the correct script to fetch and update BLS data
+        python bls_econ_project.py 
 
     - name: Commit and Push Changes
       run: |
