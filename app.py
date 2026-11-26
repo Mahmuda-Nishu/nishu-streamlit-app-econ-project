@@ -1,93 +1,107 @@
-import streamlit as st
+"""U.S. Labor Statistics Dashboard (Streamlit).
+
+Reads bls_data.csv, which bls_pipeline.py refreshes monthly from the BLS API.
+
+Run:  pip install -r requirements.txt
+      streamlit run app.py
+"""
+
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import plotly.express as px
+import streamlit as st
 
-# Load the dataset
-df = pd.read_csv("bls_data_project.csv")
+st.set_page_config(page_title="U.S. Labor Statistics Dashboard", page_icon="📊", layout="wide")
 
-# Dashboard Title
-st.title("📊 US Labor Statistics Dashboard")
-st.markdown("""
-This dashboard visualizes labor statistics data from the **US Bureau of Labor Statistics (BLS)**.
-Select a series below to view trends over time. Use the tools to explore and analyze the data! 📈
-""")
 
-# Dropdown to select a series
-series_dict = {
-    "CES0000000001": "Total Non-Farm Workers",
-    "LNS14000000": "Unemployment Rate",
-    "CES0500000003": "Average Weekly Hours of Production Employees",
-    "CES3000000001": "Manufacturing Employment",
-    "LNS14100000": "Employment-Population Ratio"
-}
-df['series_name'] = df['series_id'].map(series_dict)
-selected_series_name = st.selectbox(
-    "🔍 Select a Series to Visualize", 
-    df['series_name'].unique()
+@st.cache_data
+def load_data():
+    df = pd.read_csv("bls_data.csv", parse_dates=["date"])
+    return df.sort_values("date")
+
+
+def fmt(value, unit):
+    """Format a number for its unit: whole numbers for job counts, 2 decimals otherwise."""
+    if unit == "%":
+        return f"{value:.1f}%"
+    if unit.startswith("$"):
+        return f"${value:,.2f}"
+    return f"{value:,.0f}K jobs"
+
+
+df = load_data()
+series_names = list(df["series_name"].unique())
+latest_date = df["date"].max()
+
+st.title("📊 U.S. Labor Statistics Dashboard")
+st.caption(f"Source: U.S. Bureau of Labor Statistics API · Data through **{latest_date:%B %Y}** · "
+           "Updated automatically every month")
+
+# Sidebar filters
+st.sidebar.header("Filters")
+min_date, max_date = df["date"].min().date(), latest_date.date()
+start, end = st.sidebar.slider("Date range", min_value=min_date, max_value=max_date,
+                               value=(min_date, max_date), format="MMM YYYY")
+df_range = df[(df["date"].dt.date >= start) & (df["date"].dt.date <= end)]
+
+tab_single, tab_compare = st.tabs(["📈 Explore one indicator", "⚖️ Compare indicators"])
+
+# ---- Tab 1: one indicator with key numbers ----
+with tab_single:
+    choice = st.selectbox("Indicator", series_names)
+    data = df_range[df_range["series_name"] == choice]
+    unit = data["unit"].iloc[0]
+
+    if len(data) >= 2:
+        latest = data.iloc[-1]
+        prev_month = data.iloc[-2]
+        year_ago = data[data["date"] == latest["date"] - pd.DateOffset(years=1)]
+
+        col1, col2, col3 = st.columns(3)
+        col1.metric(f"Latest ({latest['date']:%b %Y})", fmt(latest['value'], unit))
+        col2.metric("Change vs. last month", f"{latest['value'] - prev_month['value']:+,.2f}")
+        if not year_ago.empty:
+            col3.metric("Change vs. a year ago", f"{latest['value'] - year_ago['value'].iloc[0]:+,.2f}")
+
+    fig = px.line(data, x="date", y="value", markers=True,
+                  labels={"date": "", "value": unit}, title=f"{choice} ({unit})")
+    fig.update_layout(hovermode="x unified")
+    st.plotly_chart(fig, width="stretch")
+
+    with st.expander("Show data table"):
+        st.dataframe(data[["date", "value"]].sort_values("date", ascending=False),
+                     hide_index=True, width="stretch")
+    st.download_button("📥 Download this data (CSV)",
+                       data[["date", "series_name", "value", "unit"]].to_csv(index=False).encode("utf-8"),
+                       file_name=f"{choice.lower().replace(' ', '_')}.csv", mime="text/csv")
+
+# ---- Tab 2: compare growth of several indicators ----
+with tab_compare:
+    st.write("Indicators have different units, so each one is **indexed to 100** at the start "
+             "of the selected period. A value of 105 means 5% higher than at the start.")
+    picks = st.multiselect("Indicators to compare", series_names, default=series_names[:2])
+
+    if picks:
+        comp = df_range[df_range["series_name"].isin(picks)].copy()
+        first_values = comp.groupby("series_name")["value"].transform("first")
+        comp["index"] = comp["value"] / first_values * 100
+
+        fig2 = px.line(comp, x="date", y="index", color="series_name",
+                       labels={"date": "", "index": "Index (start = 100)", "series_name": ""})
+        fig2.add_hline(y=100, line_dash="dot", line_color="gray")
+        fig2.update_layout(hovermode="x unified", legend=dict(orientation="h", y=-0.2))
+        st.plotly_chart(fig2, width="stretch")
+
+# Sidebar: about
+st.sidebar.markdown("---")
+st.sidebar.markdown(
+    """
+### ℹ️ About
+Monthly U.S. labor market indicators from the
+[Bureau of Labor Statistics](https://www.bls.gov).
+A GitHub Actions pipeline pulls fresh data from the BLS API every month.
+
+**Built by:** Mahmuda Akhter Nishu
+[LinkedIn](https://www.linkedin.com/in/mahmuda-nishu) ·
+[GitHub](https://github.com/Mahmuda-Nishu)
+"""
 )
-
-# Filter data for the selected series
-filtered_df = df[df['series_name'] == selected_series_name]
-
-# Define dynamic labels and colors
-if "Rate" in selected_series_name or "Ratio" in selected_series_name:
-    y_label = "Value (%)"
-    line_color = "#2ca02c"  # Green
-else:
-    y_label = "Value (in thousands)"
-    line_color = "#1f77b4"  # Blue
-
-# Plot the data
-st.subheader(f"📈 Trends for **{selected_series_name}**")
-fig, ax = plt.subplots(figsize=(12, 6))
-sns.lineplot(
-    data=filtered_df, 
-    x='year_month', 
-    y='value', 
-    marker='o', 
-    color=line_color, 
-    ax=ax,
-    label=selected_series_name
-)
-ax.set_title(f"{selected_series_name} Over Time", fontsize=18, fontweight='bold')
-ax.set_xlabel("Year-Month", fontsize=14, labelpad=10)
-ax.set_ylabel(y_label, fontsize=14, labelpad=10)
-plt.xticks(rotation=45, fontsize=12)
-plt.yticks(fontsize=12)
-plt.legend(fontsize=12)
-plt.grid(alpha=0.3, linestyle='--', linewidth=0.5)
-st.pyplot(fig)
-
-# Display raw data
-st.subheader("🗂 Raw Data")
-st.dataframe(filtered_df)
-
-# Add data download button
-st.markdown("### 📥 Download the Data")
-csv = filtered_df.to_csv(index=False).encode('utf-8')
-st.download_button(
-    label="Download CSV",
-    data=csv,
-    file_name='filtered_data.csv',
-    mime='text/csv',
-    help="Download the filtered data as a CSV file."
-)
-
-# Add a sidebar with additional information
-st.sidebar.title("ℹ️ About This Dashboard")
-st.sidebar.markdown("""
-- **Source**: [US Bureau of Labor Statistics](https://www.bls.gov)
-- **Metrics Included**:
-    - Total Non-Farm Workers
-    - Unemployment Rate
-    - Average Weekly Hours of Production Employees
-    - Manufacturing Employment
-    - Employment-Population Ratio
-- **Data Range**: Starting from 2022
-- This dashboard is interactive: select a series and view trends or download the raw data.
-""")
-
-# Sidebar Styling
-st.sidebar.markdown("### 🛠 Created By:")
-st.sidebar.markdown("Nishu")

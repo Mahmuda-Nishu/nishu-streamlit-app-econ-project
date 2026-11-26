@@ -1,0 +1,97 @@
+series_id,series_name,unit,date,value
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-01-01,150014.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-02-01,150876.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-03-01,151370.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-04-01,151642.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-05-01,151928.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-06-01,152348.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-07-01,153038.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-08-01,153281.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-09-01,153536.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-10-01,153897.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-11-01,154155.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2022-12-01,154291.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-01-01,154773.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-02-01,155060.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-03-01,155206.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-04-01,155484.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-05-01,155787.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-06-01,156027.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-07-01,156211.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-08-01,156421.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-09-01,156667.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-10-01,156832.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-11-01,157014.0
+CES0000000001,Total Nonfarm Employment,thousands of jobs,2023-12-01,157304.0
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-01-01,31.63
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-02-01,31.65
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-03-01,31.84
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-04-01,31.95
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-05-01,32.08
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-06-01,32.2
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-07-01,32.33
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-08-01,32.44
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-09-01,32.54
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-10-01,32.7
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-11-01,32.83
+CES0500000003,Average Hourly Earnings (private),$ per hour,2022-12-01,32.94
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-01-01,33.07
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-02-01,33.15
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-03-01,33.31
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-04-01,33.44
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-05-01,33.54
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-06-01,33.7
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-07-01,33.84
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-08-01,33.91
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-09-01,34.01
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-10-01,34.1
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-11-01,34.23
+CES0500000003,Average Hourly Earnings (private),$ per hour,2023-12-01,34.34
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-01-01,12602.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-02-01,12649.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-03-01,12717.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-04-01,12768.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-05-01,12787.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-06-01,12817.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-07-01,12852.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-08-01,12882.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-09-01,12899.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-10-01,12930.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-11-01,12935.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2022-12-01,12934.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-01-01,12942.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-02-01,12940.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-03-01,12932.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-04-01,12941.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-05-01,12936.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-06-01,12945.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-07-01,12939.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-08-01,12941.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-09-01,12954.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-10-01,12923.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-11-01,12948.0
+CES3000000001,Manufacturing Employment,thousands of jobs,2023-12-01,12960.0
+LNS14000000,Unemployment Rate,%,2022-01-01,4.0
+LNS14000000,Unemployment Rate,%,2022-02-01,3.8
+LNS14000000,Unemployment Rate,%,2022-03-01,3.6
+LNS14000000,Unemployment Rate,%,2022-04-01,3.7
+LNS14000000,Unemployment Rate,%,2022-05-01,3.6
+LNS14000000,Unemployment Rate,%,2022-06-01,3.6
+LNS14000000,Unemployment Rate,%,2022-07-01,3.5
+LNS14000000,Unemployment Rate,%,2022-08-01,3.6
+LNS14000000,Unemployment Rate,%,2022-09-01,3.5
+LNS14000000,Unemployment Rate,%,2022-10-01,3.6
+LNS14000000,Unemployment Rate,%,2022-11-01,3.6
+LNS14000000,Unemployment Rate,%,2022-12-01,3.5
+LNS14000000,Unemployment Rate,%,2023-01-01,3.4
+LNS14000000,Unemployment Rate,%,2023-02-01,3.6
+LNS14000000,Unemployment Rate,%,2023-03-01,3.5
+LNS14000000,Unemployment Rate,%,2023-04-01,3.4
+LNS14000000,Unemployment Rate,%,2023-05-01,3.7
+LNS14000000,Unemployment Rate,%,2023-06-01,3.6
+LNS14000000,Unemployment Rate,%,2023-07-01,3.5
+LNS14000000,Unemployment Rate,%,2023-08-01,3.8
+LNS14000000,Unemployment Rate,%,2023-09-01,3.8
+LNS14000000,Unemployment Rate,%,2023-10-01,3.8
+LNS14000000,Unemployment Rate,%,2023-11-01,3.7
+LNS14000000,Unemployment Rate,%,2023-12-01,3.7
