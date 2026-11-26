@@ -19,13 +19,14 @@ def load_data():
     return df.sort_values("date")
 
 
-def fmt(value, unit):
+def fmt(value, unit, sign=False):
     """Format a number for its unit: whole numbers for job counts, 2 decimals otherwise."""
+    plus = "+" if sign else ""
     if unit == "%":
-        return f"{value:.1f}%"
+        return f"{value:{plus}.1f} pts" if sign else f"{value:.1f}%"
     if unit.startswith("$"):
-        return f"${value:,.2f}"
-    return f"{value:,.0f}K jobs"
+        return f"{'+' if sign and value >= 0 else ''}{'-' if value < 0 else ''}${abs(value):,.2f}"
+    return f"{value:{plus},.0f}K jobs"
 
 
 df = load_data()
@@ -58,9 +59,9 @@ with tab_single:
 
         col1, col2, col3 = st.columns(3)
         col1.metric(f"Latest ({latest['date']:%b %Y})", fmt(latest['value'], unit))
-        col2.metric("Change vs. last month", f"{latest['value'] - prev_month['value']:+,.2f}")
+        col2.metric("Change vs. last month", fmt(latest['value'] - prev_month['value'], unit, sign=True))
         if not year_ago.empty:
-            col3.metric("Change vs. a year ago", f"{latest['value'] - year_ago['value'].iloc[0]:+,.2f}")
+            col3.metric("Change vs. a year ago", fmt(latest['value'] - year_ago['value'].iloc[0], unit, sign=True))
 
     fig = px.line(data, x="date", y="value", markers=True,
                   labels={"date": "", "value": unit}, title=f"{choice} ({unit})")
@@ -86,7 +87,8 @@ with tab_compare:
         comp["index"] = comp["value"] / first_values * 100
 
         fig2 = px.line(comp, x="date", y="index", color="series_name",
-                       labels={"date": "", "index": "Index (start = 100)", "series_name": ""})
+                       labels={"date": "", "index": "Index (start = 100)", "series_name": ""},
+                       color_discrete_sequence=px.colors.qualitative.Set2)
         fig2.add_hline(y=100, line_dash="dot", line_color="gray")
         fig2.update_layout(hovermode="x unified", legend=dict(orientation="h", y=-0.2))
         st.plotly_chart(fig2, width="stretch")
